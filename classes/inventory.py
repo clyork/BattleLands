@@ -1,11 +1,6 @@
-'''
-Created on Aug 4, 2018
-
-@author: Cody York
-'''
 class Item:
-    def __init__(self, name, type, description, prop):
+    def __init__(self, name, item_type, description, prop):
         self.name = name
-        self.type = type
+        self.item_tsype = item_type
         self.description = description
         self.prop = prop

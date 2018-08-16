@@ -1,10 +1,5 @@
-'''
-Created on Aug 4, 2018
-
-@author: Cody York
-'''
-
 import random
+
 
 class Person:
     def __init__(self, name, hp, mp, atk, df, magic, items, lvl):
@@ -20,50 +15,50 @@ class Person:
         self.items = items
         self.actions = ["Attack", "Magic", "Items"]
         self.lvl = lvl
-        
-    def generateDamage(self):
+
+    def generate_damage(self):
         return random.randrange(self.atkLow, self.atkHigh)
-    
-    def takeDamage(self, dmg):
+
+    def take_damage(self, dmg):
         self.hp -= dmg
         if self.hp < 0:
             self.hp = 0
         return self.hp
-    
+
     def heal(self, dmg):
         self.hp += dmg
         if self.hp > self.maxHp:
             self.hp = self.maxHp
-            
-    def useMagic(self, cost):
+
+    def use_magic(self, cost):
         self.mp -= cost
-        
-    def chooseAction(self):
+
+    def choose_action(self):
         i = 1
-        #print("\n" + BackgroundColors.BOLD + self.name + BackgroundColors.ENDC)
-        #print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ACTIONS" + BackgroundColors.ENDC)
+        # print("\n" + BackgroundColors.BOLD + self.name + BackgroundColors.ENDC)
+        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ACTIONS" + BackgroundColors.ENDC)
         for item in self.actions:
             print("    ", str(i) + ":", item)
             i += 1
-            
-    def chooseMagic(self):
+
+    def choose_magic(self):
         i = 1
-        #print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      MAGIC" + BackgroundColors.ENDC)
+        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      MAGIC" + BackgroundColors.ENDC)
         for spell in self.magic:
             print("    ", str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
-            i += 1        
-    
-    def chooseItem(self):
+            i += 1
+
+    def choose_item(self):
         i = 1
-        #print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ITEMS:" + BackgroundColors.ENDC)
+        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ITEMS:" + BackgroundColors.ENDC)
         for item in self.items:
             print("    ", str(i) + ".", item["item"].name, ":", item["item"].description,
                   "(x" + str(item["quantity"]) + ")")
             i += 1
-    
-    def chooseTarget(self, enemies):
+
+    def choose_target(self, enemies):
         i = 1
-        #print("\n" + BackgroundColors.FAIL + BackgroundColors.BOLD + "     TARGET" + BackgroundColors.ENDC)
+        # print("\n" + BackgroundColors.FAIL + BackgroundColors.BOLD + "     TARGET" + BackgroundColors.ENDC)
         for enemy in enemies:
             if enemy.getHp() != 0:
                 print("     " + str(i) + ":" + enemy.name)
@@ -71,86 +66,75 @@ class Person:
         choice = (int(input("Choose target:")) - 1)
         return choice
 
-    def getStats(self):
+    def get_stats(self):
 
-        #HP Bar
-        hpBar = ""
-        barTicks = (self.hp/self.maxHp) * 100 / 4
-        while barTicks > 0 :
-            hpBar += "█"
-            barTicks -= 1
-        while len(hpBar)  < 25:
-            hpBar += " "
+        # HP Bar
+        hp_bar = ""
+        bar_ticks = (self.hp / self.maxHp) * 100 / 4
+        while bar_ticks > 0:
+            hp_bar += "█"
+            bar_ticks -= 1
+        while len(hp_bar) < 25:
+            hp_bar += " "
 
-        #MP Bar
-        mpBar = ""
-        mpBarTicks = (self.mp / self.maxMp) * 100 / 10
-        while mpBarTicks > 0:
-            mpBar += "█"
-            mpBarTicks -= 1
-        while len(mpBar) < 10:
-            mpBar += " "
+        # MP Bar
+        mp_bar = ""
+        mp_bar_ticks = (self.mp / self.maxMp) * 100 / 10
+        while mp_bar_ticks > 0:
+            mp_bar += "█"
+            mp_bar_ticks -= 1
+        while len(mp_bar) < 10:
+            mp_bar += " "
 
-        #White Space
-        hpString = str(self.hp) + "/" + str(self.maxHp)
-        currentHp = ""
-        if len(hpString) < 9:
-            decreased = 9 - len(hpString)
+        # White Space
+        hp_string = str(self.hp) + "/" + str(self.maxHp)
+        current_hp = ""
+        if len(hp_string) < 9:
+            decreased = 9 - len(hp_string)
             while decreased > 0:
-                currentHp += " "
+                current_hp += " "
                 decreased -= 1
-            currentHp += hpString
+            current_hp += hp_string
         else:
-            currentHp = hpString
-        mpString = str(self.mp) + "/" + str(self.maxMp)
-        currentMp = ""
-        if len(mpString) < 7:
-            decreased = 7 - len(mpString)
+            current_hp = hp_string
+        mp_string = str(self.mp) + "/" + str(self.maxMp)
+        current_mp = ""
+        if len(mp_string) < 7:
+            decreased = 7 - len(mp_string)
             while decreased > 0:
-                currentMp += " "
+                current_mp += " "
                 decreased -= 1
-            currentMp += mpString
+            current_mp += mp_string
         else:
-            currentMp = mpString
+            current_mp = mp_string
 
-        #HP/MP Bars
-        # print("                  ___________________________         ____________")
-        #--------------------- print(BackgroundColors.BOLD + self.name + "   " +
-            #--------------------- currentHp +  "|" + BackgroundColors.OKGREEN
-            #------ + hpBar + BackgroundColors.ENDC + "|  " + currentMp +  "|"
-            # + BackgroundColors.OKBLUE + mpBar + BackgroundColors.ENDC + "|")
-
-    def getEnemyStats(self):
-        hpBar = ""
-        barTicks = (self.hp / self.maxHp) * 100 / 2
-        while barTicks > 0:
-            hpBar += "█"
-            barTicks -= 1
-        while len(hpBar) < 50:
-            hpBar += " "
-        hpString = str(self.hp) + "/" + str(self.maxHp)
-        currentHp = ""
-        if len(hpString) < 11:
-            decreased = 11 - len(hpString)
+    def get_enemy_stats(self):
+        hp_bar = ""
+        bar_ticks = (self.hp / self.maxHp) * 100 / 2
+        while bar_ticks > 0:
+            hp_bar += "█"
+            bar_ticks -= 1
+        while len(hp_bar) < 50:
+            hp_bar += " "
+        hp_string = str(self.hp) + "/" + str(self.maxHp)
+        current_hp = ""
+        if len(hp_string) < 11:
+            decreased = 11 - len(hp_string)
             while decreased > 0:
-                currentHp += " "
+                current_hp += " "
                 decreased -= 1
-            currentHp += hpString
+            current_hp += hp_string
         else:
-            currentHp = hpString
-        print("                    ____________________________________________________")
-        #--------------------- print(BackgroundColors.BOLD + self.name + "   " +
-            #------------------------- currentHp + "|" + BackgroundColors.FAIL
-            #-------------------------- + hpBar + BackgroundColors.ENDC + "|")
+            current_hp = hp_string
 
-    def getHp(self):
+    def get_hp(self):
         return self.hp
 
-    def getMaxHp(self):
+    def get_max_hp(self):
         return self.maxHp
 
-    def getMp(self):
+    def get_mp(self):
         return self.mp
 
-    def getMaxMp(self):
+    def get_max_mp(self):
         return self.maxMp

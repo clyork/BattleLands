@@ -1,10 +1,3 @@
-'''
-Created on Aug 5, 2018
-
-@author: Cody York
-'''
-
-
 class Game:
     def choose_place(self):
         area_chosen = input("Enter the number where you would like to go below\n" +
@@ -41,7 +34,7 @@ class Game:
     def town_actions(self):
         print("=========================================================================")
         action_chosen = input("Would you like to: \nVisit the shop <1> \nBattle <2> \nExplore the town <3> \nPerform"
-                              +"odd jobs <4>\n")
+                              + "odd jobs <4>\n")
         if action_chosen == "1":
             pass
         elif action_chosen == "2":
@@ -53,5 +46,4 @@ class Game:
         elif action_chosen.lower() == "quit":
             exit()
         else:
-            town_actions()
-
+            Game.town_actions()
