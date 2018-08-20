@@ -2,7 +2,7 @@ import random
 
 
 class Person:
-    def __init__(self, name, hp, mp, atk, df, magic, items, lvl):
+    def __init__(self, name, hp, mp, atk, df, magic, items, money, lvl):
         self.name = name
         self.maxHp = hp
         self.hp = hp
@@ -14,6 +14,7 @@ class Person:
         self.magic = magic
         self.items = items
         self.actions = ["Attack", "Magic", "Items"]
+        self.money = money
         self.lvl = lvl
 
     def generate_damage(self):
@@ -35,22 +36,18 @@ class Person:
 
     def choose_action(self):
         i = 1
-        # print("\n" + BackgroundColors.BOLD + self.name + BackgroundColors.ENDC)
-        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ACTIONS" + BackgroundColors.ENDC)
         for item in self.actions:
             print("    ", str(i) + ":", item)
             i += 1
 
     def choose_magic(self):
         i = 1
-        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      MAGIC" + BackgroundColors.ENDC)
         for spell in self.magic:
             print("    ", str(i) + ":", spell.name, "(cost:", str(spell.cost) + ")")
             i += 1
 
     def choose_item(self):
         i = 1
-        # print(BackgroundColors.OKBLUE + BackgroundColors.BOLD + "      ITEMS:" + BackgroundColors.ENDC)
         for item in self.items:
             print("    ", str(i) + ".", item["item"].name, ":", item["item"].description,
                   "(x" + str(item["quantity"]) + ")")
@@ -58,7 +55,6 @@ class Person:
 
     def choose_target(self, enemies):
         i = 1
-        # print("\n" + BackgroundColors.FAIL + BackgroundColors.BOLD + "     TARGET" + BackgroundColors.ENDC)
         for enemy in enemies:
             if enemy.getHp() != 0:
                 print("     " + str(i) + ":" + enemy.name)
@@ -67,7 +63,6 @@ class Person:
         return choice
 
     def get_stats(self):
-
         # HP Bar
         hp_bar = ""
         bar_ticks = (self.hp / self.maxHp) * 100 / 4
@@ -138,3 +133,15 @@ class Person:
 
     def get_max_mp(self):
         return self.maxMp
+
+    def get_name(self):
+        return self.name
+
+    def get_money(self):
+        return self.money
+
+    def add_money(self, amount):
+        self.money = self.money + amount
+
+    def lose_money(self, amount):
+        self.money = self.money - amount

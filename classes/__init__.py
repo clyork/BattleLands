@@ -2,6 +2,7 @@ from classes.magic import Spell
 from classes.inventory import Item
 from classes.adventurer import Person
 from classes.game import Game
+import time
 
 # Create Damage Magic
 fireball = Spell("Fireball", 25, 6, "black", 1)
@@ -28,19 +29,21 @@ grenade = Item("Grenade", "attack", "Deals 5 damage", 5)
 # Instantiate People
 playerSpells = [fireball, cure]
 playerItems = [{"item": potion, "quantity": 2}, {"item": elixir, "quantity": 1}, {"item": grenade, "quantity": 1}]
-player = Person("Valos:", 3260, 132, 300, 34, playerSpells, playerItems, 1)
+player = Person("Valos:", 3260, 132, 300, 34, playerSpells, playerItems, 10, 1)
 
 print("=========================================================================")
 print("==================== Welcome to the Kingdom of Tera  ====================")
 print("=====  If you would like to view the map check the resources folder =====")
-print("= Anytime you are asked for input you can type 'quit' to quit the game! =")
+print("==  Anytime you are asked for input you can type 'q' to quit the game! ==")
 print("=========================================================================")
-
+time.sleep(5)
 print("=========================================================================")
-print("\tThe kingdom of Grandia is in trouble so you need to go to each providence \n" +
-      "The different providences you can go to are 'Oceans Tide', 'Reinstald', \n" +
-      "The Windy Plains', 'The Deadlands', 'Dead Coast', 'Disputed Territory', \n" +
+print("\tThe kingdom of Grandia is in trouble so you need to go to each "
+      "\nprovidence to save the day. " 
+      "The different providences you can go to are \n'Oceans Tide', 'Reinstald', " 
+      "'The Windy Plains', 'The Deadlands', \n'Dead Coast', 'Disputed Territory', " 
       "and 'Gaurdia'.")
 print("=========================================================================")
+time.sleep(10)
 game = Game()
 game.choose_place()

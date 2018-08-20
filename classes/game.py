@@ -1,18 +1,24 @@
+from classes.job import Job
+import time
+
+
 class Game:
     def choose_place(self):
-        area_chosen = input("Enter the number where you would like to go below\n" +
-                            "<1> Oceans Tide\n <2> Reinstald\n <3> The Windy PLains\n" +
-                            "<4> The Deadlands\n <5> Dead Coast\n <6> Disputed Territory\n" +
-                            "<7> Gaurdia")
+        print("Enter the number of the place where you would like to go below\n" 
+              "\t<1> Oceans Tide\n \t<2> Reinstald\n \t<3> The Windy Plains\n" 
+              "\t<4> The Deadlands\n \t<5> Dead Coast\n \t<6> Disputed Territory\n" 
+              "\t<7> Gaurdia\n \t<q> Quit")
+        area_chosen = input("Input: ")
 
         if area_chosen == "1":
             print("=========================================================================")
-            print("Oceans Tide is a neutral area in regards to the ongoing war between Reinstald and Gaurdia." +
-                  "\nThat being said a lot of refugees from both sides have moved to the coast here to create their" +
-                  "\nown neutral ports with which to trade with the other continents. That being said there are a lot" +
-                  "\nof not so good people in the area.")
+            print("\tOceans Tide is a neutral area in regards to the ongoing war between \nReinstald and Gaurdia." 
+                  " That being said a lot of refugees from both sides \nhave moved to the coast here to create their" 
+                  " own neutral ports with \nwhich to trade with the other continents. That being said there are a " 
+                  "\nlot of not so good people in the area. You will start in the harbor \ntown of Tiding.")
             print("=========================================================================")
-
+            time.sleep(3)
+            Game.town_actions(self)
         elif area_chosen == "2":
             print("here 1")
         elif area_chosen == "3":
@@ -25,16 +31,19 @@ class Game:
             print("here 1")
         elif area_chosen == "7":
             print("here 1")
-        elif area_chosen == "quit":
+        elif area_chosen == "q":
             exit()
         else:
-            print("Bad Input. Try again or type 'quit' to exit the game.")
-            Game.choose_place()
+            print("Bad Input. Try again or type 'q' to exit the game.")
+            Game.choose_place(self)
 
     def town_actions(self):
+        time.sleep(6)
         print("=========================================================================")
-        action_chosen = input("Would you like to: \nVisit the shop <1> \nBattle <2> \nExplore the town <3> \nPerform"
-                              + "odd jobs <4>\n")
+        print("You have arrived in town. Would you like to: "
+              "\n\t<1> Visit the shop \n\t<2> Battle \n\t<3> Explore the town \n\t<4> Perform "
+              "odd jobs \n\t<q> Quit")
+        action_chosen = input("Input: ")
         if action_chosen == "1":
             pass
         elif action_chosen == "2":
@@ -42,8 +51,9 @@ class Game:
         elif action_chosen == "3":
             pass
         elif action_chosen == "4":
-            pass
-        elif action_chosen.lower() == "quit":
+            job = Job()
+            job.choose_town_job()
+        elif action_chosen.lower() == "q":
             exit()
         else:
-            Game.town_actions()
+            Game.town_actions(self)
