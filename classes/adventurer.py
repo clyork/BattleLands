@@ -145,3 +145,9 @@ class Person:
 
     def lose_money(self, amount):
         self.money = self.money - amount
+
+    def get_level(self):
+        return self.lvl
+
+    def level_up(self):
+        self.lvl += self.lvl + 1

@@ -2,14 +2,6 @@ import random
 
 
 class Monster:
-    skeleton_list_rank_1 = [
-        {'name': 'Skeleton Soldier', 'hp': '10', 'df': '1', 'weapon': 'basic sword', 'magic': 'none', 'gold': '3'},
-        {'name': 'Skeleton Archer', 'hp': '12', 'df': '0', 'weapon': 'basic bow', 'magic': 'none', 'gold': '2'}
-    ]
-    skeleton_list_rank_2 = [
-        {'name': 'Skeleton Leader', 'hp': '15', 'df': '1', 'weapon': 'sharp sword', 'magic': 'none', 'gold': '8'},
-        {'name': 'Skeleton Sniper', 'hp': '14', 'df': '1', 'weapon': 'long bow', 'magic': 'none', 'gold': '9'}
-    ]
     skeleton_list_rank_3 = [
         {'name': 'Captain Keg Beard', 'hp': '20', 'df': '1', 'weapon': 'Keg\'s Cutlass', 'magic': 'none', 'gold': '18'}
     ]
@@ -31,11 +23,12 @@ class Monster:
         {'name': 'Lex Chance', 'hp': '24', 'df': '0', 'weapon': 'Lex\'s Rapier', 'magic': 'none', 'gold': '36'},
     ]
 
-    def __init__(self, name, hp, df, weapon, gold):
+    def __init__(self, name, hp, df, weapon, magic, gold):
         self.name = name
         self.hp = hp
         self.df = df
         self.weapon = weapon
+        self.magic = magic
         self.gold = gold
 
     def choose_enemy_spell(self):
